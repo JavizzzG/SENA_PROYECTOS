@@ -17,7 +17,7 @@ let volver = Number(prompt("Deseaa volver a intentar (1). Desea salir(2)"))
         case 1: iniciar = true
         break
 
-        case 2: iniciar: false
+        case 2: iniciar = false
                 window.location.href = "index.html"
         break
 
