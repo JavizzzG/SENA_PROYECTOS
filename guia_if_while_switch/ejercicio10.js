@@ -1,4 +1,5 @@
-let cantidad = Number(prompt("Cuantas copias desea imprimir"))
+do{
+    let cantidad = Number(prompt("Cuantas copias desea imprimir"))
 
 if(cantidad < 500){
     precioTotal = 120 * cantidad
@@ -16,3 +17,18 @@ if(cantidad < 500){
     precioTotal = 50 * cantidad
     console.log("El valor de la copia es $50 y el valor total del pedido es $"+precioTotal.toLocaleString())
 }
+
+let volver = Number(prompt("Desea volver a elegir la cantidad a imprimir (1). Desea salir (2)"))
+    switch(volver){
+        case 1: iniciar = true
+        break
+
+        case 2: iniciar = false
+                window.location.href = "index.html"
+        break
+
+        default :
+                iniciar = true
+                console.log("Error en el sistema")
+    }
+}while(iniciar)

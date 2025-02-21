@@ -1,3 +1,5 @@
+do{
+
 let tipoSandwich = Number(prompt("Elija el tipo de Sandwich: Grande (1) Pequeño (2)"))
 let adicionales = true
 adicionales = confirm("¿Desea pedir ingredientes adicionales?")
@@ -144,4 +146,18 @@ switch(tipoSandwich){
         console.log("Error en los datos, intente de nuevo")
 
 }
+
+let volver = Number(prompt("Desea pedir otro Sandwich (1). Desea salir (2)"))
+    switch(volver){
+        case 1: iniciar = true
+        break
+
+        case 2: iniciar = false
+                window.location.href = "index.html"
+        break
+
+        default : iniciar = true
+                    console.log("Lo sentimos, ha ocurrido un error al elegir una opción")
+    }
+}while(iniciar)
     

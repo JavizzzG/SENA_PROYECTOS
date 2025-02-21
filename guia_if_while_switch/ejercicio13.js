@@ -1,3 +1,5 @@
+do{
+
 let proveedor = Number(prompt("Ingrese el proveedor: Claro (1), Tigo (2), Movistar (3)"))
 let minutos = Number(prompt("Ingrese los minutos internacioanles consumidos"))
 
@@ -22,3 +24,17 @@ switch(proveedor){
 
     default : console.log("Error en los datos, intente de nuevo")
 }
+
+let volver = Number(prompt("Desea ingresar los datos de otro proveedor? (1). Desea salir (2)"))
+    switch(volver){
+        case 1: iniciar = true
+        break
+
+        case 2: iniciar = false
+                window.location.href = "index.html"
+        break
+
+        default : iniciar = true
+                    console.log("Error al ingresar los datos")
+    }
+}while(iniciar)

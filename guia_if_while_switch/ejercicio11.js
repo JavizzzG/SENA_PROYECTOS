@@ -1,3 +1,5 @@
+do{
+
 let pitido = true
 pitido = confirm("EL pc emite un pitido?")
 let disco = true
@@ -20,3 +22,18 @@ if(pitido){
         console.log("Compruebe las conexiones de altavoces")
     }
 }
+
+let volver = Number(prompt("Desea volver a evaluar su pc? (1). Desea salir (2)"))
+    switch(volver){
+        case 1 : iniciar = true
+        break
+
+        case 2 : iniciar = false
+                    window.location.href = "index.html"
+        break
+
+        default : iniciar = true
+                    console.log("Hay un error en el sistema")
+
+    }
+}while(iniciar)
