@@ -1,151 +1,51 @@
+function calcularCosto(tipoSandwich){
+    if(tipoSandwich == 1){
+        return costoTotal = 12000
+    }else if(tipoSandwich == 2){
+        return costoTotal = 6000
+    }else{
+        return "Error en los datos ingresados"
+    }
+}
+
+function calcularIngredientes(tocineta, jalapeno, pavo, queso){
+    costoIngrediente = 0
+    if(tocineta){
+        costoIngrediente += 3000
+    }
+    if(jalapeno){
+        costoIngrediente += 0
+    }
+    if(pavo){
+        costoIngrediente += 3000
+    }
+    if(queso){
+        costoIngrediente += 2500
+    }
+    return costoIngrediente
+}
+
+
 do{
 
 let tipoSandwich = Number(prompt("Elija el tipo de Sandwich: Grande (1) Pequeño (2)"))
 let adicionales = true
 adicionales = confirm("¿Desea pedir ingredientes adicionales?")
+if(adicionales){
+let tocineta = true
+tocineta = confirm("¿Desea pedir tocineta?")
+let jalapeno = true
+jalapeno = confirm("¿Desea pedir jalapeños?")
+let pavo = true
+pavo = confirm("¿Desea pedir pavo?")
+let queso = true
+queso = confirm("¿Desea pedir queso?")
 
-sandwichGrande = 12000
-sandwichPequeno = 6000
-
-switch(tipoSandwich){
-    case 1 : 
-    if(adicionales){
-        let tocineta = true
-        tocineta = confirm("¿Desea pedir tocineta?")
-        let jalapeno = true
-        jalapeno = confirm("¿Desea pedir jalapeños?")
-        let pavo = true
-        pavo = confirm("¿Desea pedir pavo?")
-        let queso = true
-        queso = confirm("¿Desea pedir queso?")
-        precioTocineta = 3000
-        precioJalapeno = 0
-        precioPavo = 3000
-        precioQueso = 2500
-        if(tocineta && jalapeno && pavo && queso){
-            precioTotal = precioTocineta + precioJalapeno + precioPavo + precioQueso + sandwichGrande
-            console.log("Pedido de Sandwich con todo por un precio de $"+precioTotal.toLocaleString())
-        }else if(tocineta && jalapeno && pavo) {
-            precioTotal = precioTocineta + precioJalapeno + precioPavo + sandwichGrande
-            console.log("Pedido de Sandwich con tocineta, jalapeños y pavo por un precio de $"+precioTotal.toLocaleString())
-        }else if(tocineta && jalapeno && queso){
-            precioTotal = precioTocineta + precioJalapeno + precioQueso + sandwichGrande
-            console.log("Pedido de Sandwich con tocineta, jalapeños y queso por un precio de $"+precioTotal.toLocaleString())
-        }else if(tocineta && pavo && queso){
-            precioTotal = precioTocineta + precioPavo + precioQueso + sandwichGrande
-            console.log("Pedido de Sandwich con tocineta, pavo y queso por un precio de $"+precioTotal.toLocaleString())
-        }else if(jalapeno && pavo && queso){
-            precioTotal = precioJalapeno + precioPavo + precioQueso + sandwichGrande
-            console.log("Pedido de Sandwich con jalapeños, Pavo y Queso por un precio de $"+precioTotal.toLocaleString())
-        }else if(tocineta && jalapeno){
-            precioTotal = precioTocineta + precioJalapeno + sandwichGrande
-            console.log("Pedido de Sandwich con tocineta y jalapeños por un precio de $"+precioTotal.toLocaleString())
-        }else if(tocineta && pavo){
-            precioTotal = precioTocineta + precioPavo + sandwichGrande
-            console.log("Pedido de Sandwich con tocineta y pavo por un precio de $"+precioTotal.toLocaleString())
-        }else if(tocineta && queso){
-            precioTotal = precioTocineta + precioQueso + sandwichGrande
-            console.log("Pedido de Sandwich con tocineta y queso por un precio de $"+precioTotal.toLocaleString())
-        }else if(jalapeno && pavo){
-            precioTotal = precioJalapeno + precioPavo + sandwichGrande
-            console.log("Pedido de Sandwich con jalapeños y pavo por un precio de $"+precioTotal.toLocaleString())
-        }else if(jalapeno && queso){
-            precioTotal = precioJalapeno + precioQueso + sandwichGrande
-            console.log("Pedido de Sandwich con jalapeños y queso por un precio de $"+precioTotal.toLocaleString())
-        }else if(pavo && queso){
-            precioTotal = precioPavo + precioQueso + sandwichGrande
-            console.log("Pedido de Sandwich con pavo y queso por un precio de $"+precioTotal.toLocaleString())
-        }else if(tocineta){
-            precioTotal = precioTocineta + sandwichGrande
-            console.log("Pedido de Sandwich con tocineta por un precio de $"+precioTotal.toLocaleString())
-        }else if(jalapeno){
-            precioTotal = precioJalapeno + sandwichGrande
-            console.log("Pedido de Sandwich con jalapeños por un precio de $"+precioTotal.toLocaleString())
-        }else if(pavo){
-            precioTotal = precioPavo + sandwichGrande
-            console.log("Pedido de Sandwich con pavo por un precio de $"+precioTotal.toLocaleString())
-        }else{
-            precioTotal = precioQueso + sandwichGrande
-            console.log("Pedido de Sandwich con queso por un precio de $"+precioTotal.toLocaleString()) 
-        }
-    }else{
-        precioTotal = sandwichGrande
-        console.log("Pedido de Sandwich por un precio de $"+precioTotal.toLocaleString())
-    }
-
-    break
-
-    case 2 :
-        if(adicionales){
-            let tocineta = true
-            tocineta = confirm("¿Desea pedir tocineta?")
-            let jalapeno = true
-            jalapeno = confirm("¿Desea pedir jalapeños?")
-            let pavo = true
-            pavo = confirm("¿Desea pedir pavo?")
-            let queso = true
-            queso = confirm("¿Desea pedir queso?")
-            precioTocineta =  3000
-            precioJalapeno = 0
-            precioPavo = 3000
-            precioQueso = 2500
-            if(tocineta && jalapeno && pavo && queso){
-                precioTotal = precioTocineta + precioJalapeno + precioPavo + precioQueso + sandwichPequeno
-                console.log("Pedido de Sandwich con todo por un precio de $"+precioTotal.toLocaleString())
-            }else if(tocineta && jalapeno && pavo) {
-                precioTotal = precioTocineta + precioJalapeno + precioPavo + sandwichPequeno
-                console.log("Pedido de Sandwich con tocineta, jalapeños y pavo por un precio de $"+precioTotal.toLocaleString())
-            }else if(tocineta && jalapeno && queso){
-                precioTotal = precioTocineta + precioJalapeno + precioQueso + sandwichPequeno
-                console.log("Pedido de Sandwich con tocineta, jalapeños y queso por un precio de $"+precioTotal.toLocaleString())
-            }else if(tocineta && pavo && queso){
-                precioTotal = precioTocineta + precioPavo + precioQueso + sandwichPequeno
-                console.log("Pedido de Sandwich con tocineta, pavo y queso por un precio de $"+precioTotal.toLocaleString())
-            }else if(jalapeno && pavo && queso){
-                precioTotal = precioJalapeno + precioPavo + precioQueso + sandwichPequeno
-                console.log("Pedido de Sandwich con jalapeños, Pavo y Queso por un precio de $"+precioTotal.toLocaleString())
-            }else if(tocineta && jalapeno){
-                precioTotal = precioTocineta + precioJalapeno + sandwichPequeno
-                console.log("Pedido de Sandwich con tocineta y jalapeños por un precio de $"+precioTotal.toLocaleString())
-            }else if(tocineta && pavo){
-                precioTotal = precioTocineta + precioPavo + sandwichPequeno
-                console.log("Pedido de Sandwich con tocineta y pavo por un precio de $"+precioTotal.toLocaleString())
-            }else if(tocineta && queso){
-                precioTotal = precioTocineta + precioQueso + sandwichPequeno
-                console.log("Pedido de Sandwich con tocineta y queso por un precio de $"+precioTotal.toLocaleString())
-            }else if(jalapeno && pavo){
-                precioTotal = precioJalapeno + precioPavo + sandwichPequeno
-                console.log("Pedido de Sandwich con jalapeños y pavo por un precio de $"+precioTotal.toLocaleString())
-            }else if(jalapeno && queso){
-                precioTotal = precioJalapeno + precioQueso + sandwichPequeno
-                console.log("Pedido de Sandwich con jalapeños y queso por un precio de $"+precioTotal.toLocaleString())
-            }else if(pavo && queso){
-                precioTotal = precioPavo + precioQueso + sandwichPequeno
-                console.log("Pedido de Sandwich con pavo y queso por un precio de $"+precioTotal.toLocaleString())
-            }else if(tocineta){
-                precioTotal = precioTocineta + sandwichGrande
-                console.log("Pedido de Sandwich con tocineta por un precio de $"+precioTotal.toLocaleString())
-            }else if(jalapeno){
-                precioTotal = precioJalapeno + sandwichPequeno
-                console.log("Pedido de Sandwich con jalapeños por un precio de $"+precioTotal.toLocaleString())
-            }else if(pavo){
-                precioTotal = precioPavo + sandwichPequeno
-                console.log("Pedido de Sandwich con pavo por un precio de $"+precioTotal.toLocaleString())
-            }else{
-                precioTotal = precioQueso + sandwichPequeno
-                console.log("Pedido de Sandwich con queso por un precio de $"+precioTotal.toLocaleString()) 
-            }
-        }else{
-            precioTotal = sandwichPequeno
-            console.log("Pedido de Sandwich por un precio de $"+precioTotal.toLocaleString())
-        }
-    
-    break
-
-    default : 
-        console.log("Error en los datos, intente de nuevo")
-
+console.log("El costo total por el Sandwich es : $"+(calcularCosto(tipoSandwich) + calcularIngredientes(tocineta, jalapeno, pavo, queso)).toLocaleString())
+}else{
+    console.log("El costo total por el Sandwich es : $"+calcularCosto(tipoSandwich).toLocaleString())
 }
+
 
 let volver = Number(prompt("Desea pedir otro Sandwich (1). Desea salir (2)"))
     switch(volver){

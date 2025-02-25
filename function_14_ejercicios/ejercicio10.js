@@ -1,22 +1,19 @@
+function imprimirCopias(copias){
+    if(copias < 500){
+        return "El valor de la copia es $120 y el valor total del pedido es $"+(copias*120).toLocaleString()
+    }else if(copias >= 500 && copias < 750){
+        return "El valor de la copia es $100 y el valor total del pedido es $"+(copias*100).toLocaleString()
+    }else if(copias >= 750 && copias < 1000){
+        return "El valor de la copia es $80 y el valor total del pedido es $"+(copias*80).toLocaleString()
+    }else{
+        return "El valor de la copia es $50 y el valor total del pedido es $"+(copias*50).toLocaleString()
+    }
+}
+
 do{
     let cantidad = Number(prompt("Cuantas copias desea imprimir"))
 
-if(cantidad < 500){
-    precioTotal = 120 * cantidad
-    console.log("El valor de la copia es $120 y el valor total del pedido es $"+precioTotal.toLocaleString())
-
-}else if(cantidad >= 500 && cantidad < 750){
-    precioTotal = 100 * cantidad
-    console.log("El valor de la copia es $100 y el valor total del pedido es $"+precioTotal.toLocaleString())
-
-}else if(cantidad >= 750 && cantidad < 1000){
-    precioTotal = 80 * cantidad
-    console.log("El valor de la copia es $80 y el valor total del pedido es $"+precioTotal.toLocaleString())
-
-}else{
-    precioTotal = 50 * cantidad
-    console.log("El valor de la copia es $50 y el valor total del pedido es $"+precioTotal.toLocaleString())
-}
+    console.log(imprimirCopias(cantidad))
 
 let volver = Number(prompt("Desea volver a elegir la cantidad a imprimir (1). Desea salir (2)"))
     switch(volver){

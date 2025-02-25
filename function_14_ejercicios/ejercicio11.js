@@ -1,3 +1,21 @@
+function comprobarEstado(pitido, disco, unidad){
+    if(pitido){
+        if(disco){
+            return "Está averiada la PC"
+        }else if(unidad){
+            return "Póngase en contacto con el ténico apoyo"
+        }else{
+            return "Verificar contactos de la unidad"
+        }
+    }else{
+        if(!disco){
+            return "Traiga la PC para reparala en la central"
+        }else{
+            return "Compruebe las conexiones de altavoces"
+        }
+    }
+}
+
 do{
 
 let pitido = true
@@ -7,21 +25,7 @@ disco= confirm("EL disco duro gira?")
 let unidad = true
 unidad = confirm("La unidad gira?")
 
-if(pitido){
-    if(disco){
-        console.log("Está averiada la PC")
-    }else if(unidad){
-        console.log("Póngase en contacto con el ténico apoyo")
-    }else{
-        console.log("Verificar contactos de la unidad")
-    }
-}else{
-    if(!disco){
-        console.log("Traiga la PC para reparala en la central")
-    }else{
-        console.log("Compruebe las conexiones de altavoces")
-    }
-}
+console.log(comprobarEstado(pitido, disco, unidad))
 
 let volver = Number(prompt("Desea volver a evaluar su pc? (1). Desea salir (2)"))
     switch(volver){
