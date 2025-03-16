@@ -5,7 +5,7 @@ let reservar = () => {
     for (let i = 0; i < habitaciones.length; i++) {
         if (habitaciones[i] == 0) {
             habitaciones[i] = 1
-            return 'Reservada correctamente la habitación ' + (i + 1) + '. \nEstado actual de las habitaciones ' + habitaciones
+            return 'Reservada correctamente la habitación ' + (i + 1)
         }
         
     }
@@ -17,16 +17,18 @@ let reservar = () => {
 
 
 let liberar = (l) => {
+    let lib = l - 1
     let libres = habitaciones.every(n => n == 0)
         if (libres) {
             return "Todas las habitaciones se encuentran libres"
         }
-    habitaciones[l] = 0
-    return 'Liberada correctamente la habitación ' + (l + 1) + '. \nEstado actual de las habitaciones ' + habitaciones
+    habitaciones[lib] = 0
+    return 'Liberada correctamente la habitación ' + (l)
 }
 
 
 while (salir == false) {
+    alert("Estado actual de las habitaciones "+ habitaciones)
     let estado = Number(prompt("Desea reservar (1), Desea liberar (2), Desea salir (3)"))
 
     switch (estado) {

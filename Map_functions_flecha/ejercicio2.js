@@ -1,38 +1,55 @@
 let cajeroEncendido = true
-let registro = []
+let registro = new Map([])
 let saldo = 0
+let claveRegistro = 0
+let clavemovimiento = 0
+let comprobarRegistro = []
+
 
 let retirarDinero = (d) => {
     let dinero = 0 - d
-    registro.push(dinero)
-    if(registro.length > 5){
-        registro.shift()
+    registro.set(claveRegistro, dinero)
+    claveRegistro++
+    comprobarRegistro = [...registro.values()]
+    if(comprobarRegistro.length > 5){
+        registro.delete(clavemovimiento)
+        clavemovimiento++
     }
     saldo += dinero
     return "Se ha retirado correctamente la cantidad de " + d + " dolares"
 }
 
 let depositarDinero = (d) => {
-    registro.push(d)
-    if(registro.length > 5){
-        registro.shift()
+    registro.set(claveRegistro, d)
+    claveRegistro++
+    comprobarRegistro = [...registro.values()]
+    if(comprobarRegistro.length > 5){
+        registro.delete(clavemovimiento)
+        clavemovimiento++
     }
     saldo += d
 
     return "Se ha depositado correctamente la cantidad de " + d + " dolares"
 }
 
-let mostrarRegistro = () => {
-    let movimientos = "Los últimos movimientos son: \n"
-    if(registro.length == 0){
-        return "No hay movimientos"
+let lastMoves = () => {
+    let movimientos = "Los últimos 5 movimientos son: \n"
+    let movimientosArray = Array.from(registro).reverse(); // Convert to array and reverse to get last movements
+    let count = 0;
+
+    if (movimientosArray.length === 0) {
+        return "No hay movimientos registrados.";
     }
-    for(let i = 0; i < registro.length; i++){
-        movimientos += `Movimiento ${registro[i]} \n`
+
+    for (let [clave, movimiento] of movimientosArray) {
+        if (count >= 5) {
+            break; // Stop after 5 movements
+        }
+        movimientos += `Movimiento ${clave}: ${movimiento > 0 ? "Depósito" : "Retiro"} de ${Math.abs(movimiento)} dólares\n`;
+        count++;
     }
     return movimientos
 }
-
 
 while(cajeroEncendido){
     let elegir = Number(prompt("Desea retirar (1), Desea depositar (2), Ver saldo (3) o Deseao Salir (4) o Ver movimientos (5)?"))
@@ -70,9 +87,8 @@ while(cajeroEncendido){
         break
 
         case 5:
-            alert(mostrarRegistro())
+            alert(lastMoves())
         break
-
 
         default :
             alert("Ha ocurrido un error, intente de nuevo")

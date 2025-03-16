@@ -20,11 +20,12 @@ let mostrarStockRecomendado = () => {
 }
 
 let pedirProducto = (cod, d) => {
-    if(codigoProducto[cod] >= 0 && codigoProducto[cod] <= 4){
-        if(inventario[cod] > 0){
-            if(d >= precios[cod]){
-                inventario[cod] -= 1
-                return productos[cod]+" entregado correctamente, devuelta de : $"+(d-precios[cod])
+    let codChange = cod - 1
+    if(codigoProducto[codChange] >= 0 && codigoProducto[codChange] <= 4){
+        if(inventario[codChange] > 0){
+            if(d >= precios[codChange]){
+                inventario[codChange] -= 1
+                return productos[codChange]+" entregado correctamente, devuelta de : $"+(d-precios[codChange])
             }else{
                 return "No tiene suficiente dinero, devuelta del dinero ingresado : $"+d
             }
@@ -37,10 +38,11 @@ let pedirProducto = (cod, d) => {
 }
 
 let agregarStock = (add, cant) => {
-    if(codigoProducto[add] >= 0 && codigoProducto[add] <= 4){
+    let addChange = add - 1
+    if(codigoProducto[addChange] >= 0 && codigoProducto[addChange] <= 4){
         if(cant > 0){
-            inventario[add] += cant
-            return "Se ha rellenado correctamente el stock de "+productos[add]+" con "+cant+" unidades"
+            inventario[addChange] += cant
+            return "Se ha rellenado correctamente el stock de "+productos[addChange]+" con "+cant+" unidades"
         }else{
             return "No se pueden agregar cantidades menores a 1"
         }
