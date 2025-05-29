@@ -1,4 +1,3 @@
-import { read } from 'fs'
 import * as readlineSync from 'readline-sync'
 
 let patient_array: Patient[] = []

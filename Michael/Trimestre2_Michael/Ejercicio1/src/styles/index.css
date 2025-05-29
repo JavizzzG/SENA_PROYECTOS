@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:monospace;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-header, .img-final{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+h1{
+    position: absolute;
+    color: #fff;
+    font-size: 4rem;
+    font-weight: 100;
+}
+
+
+/*Sección del medio*/
+
+#music-info{
+    padding: 20px;
+    width: 100%;
+}
+
+.article1, .article2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textos1, .textos2{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-top: 50px;
+}
+
+.textos1 h2, .textos2 h2{
+    width: 100%;
+    font-size: 1.5rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.textos1 h2 .w-music, .textos2 h2 .w-music{
+    background: linear-gradient(to left, #dd2476, #ff814f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.textos1 h2 .w-fun-enter, .textos2 h2 .w-fun-enter{
+    color: #444;
+}
+
+.textos1 p, .textos2 p{
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+.textos1 button, .textos2 button{
+    width: 100px;
+    padding: 5px 3px;
+    border-radius: 20px;
+    border: 0px;
+    background-color: #d23;
+    color: #fff;
+    cursor: pointer;
+}
+
+.article1 img, .article2 img{
+    width: 50%;
+    height: auto;
+}
+
+#final-music-info{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#final-music-info img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container-final{
+    position: absolute;
+    margin-right: 0;
+    margin-top: 0;
+}
+
+.container-final p{
+    color: #fff;
+}
+
+.container-final h2 .w-fun-enter{
+    color: #fff;
+}
+
+
+
+
+
+footer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #d23;
+    row-gap: 20px;
+    padding: 50px 0 30px 0;
+}
+
+.container-footer{
+    display: flex;
+    column-gap: 20px;
+    width: 80%;
+    margin: auto;
+    color: #ddd;
+}
+
+.container-footer ul{
+    list-style: none;
+    font-size: 0.6rem;
+}
+
+.li-primero{
+    margin-bottom: 16px;
+}
+
+.final-footer{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #ddd;
+    font-size: 0.7rem;
+}
+
+@media (max-width: 390px){
+    .textos1, .textos2{
+        width: 80%;
+    }
+}
+
+@media (min-width: 1024px){
+
+    #music-info{
+        display: flex;
+    }
+
+    .article1, .article2{
+        width: 50%;
+    }
+}
