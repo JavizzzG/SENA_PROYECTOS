@@ -1,0 +1,183 @@
+{
+  "name": "Crear Jira",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Tu eres un asistente que se encarga de revisar todas las páginas del espacio de trabajo y la información de esta, y retornarla\n\n- Se entiende por tareas o puntos principales o sinónimos a aquellos títulos que tienen un numero entero a la izquierda.\n\n- Si te encuentras un titulo con subtitulos o que son partes de ese titulo (ejemplo: 5,  5.1,   5.2), estos se cuentan dentro del titulo principal, asi haciendose un story point para todo el titulo\n\n- En caso de tener dudas entre diferentes páginas con nombres similares se debe preguntar al usuario cual es a la que se refiere. \n\nEL usuario solo debe introducir el nombre de la página a la que quiere que se le analicen las tareas y se saquen los story points junto con una descripción.\n\nLos story point (no tienen que ser exactos pero puedes investigar un poco en internet para saber más o menos cuantos puntos darle a cada tarea) y la breve descripción las das tu como asistente\n\n-Para dar los story points usa la secuencia de Fibonacci hasta el 21"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        176,
+        -432
+      ],
+      "id": "49a31453-1780-4cf8-98d2-3c75ac2569fc",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -64,
+        -432
+      ],
+      "id": "ebba406f-e950-431c-a885-160d42c833cb",
+      "name": "When chat message received",
+      "webhookId": "766e0de0-801b-4a47-b487-0ebc5e3018a5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        144,
+        -240
+      ],
+      "id": "096e1e80-3f4b-449e-90b7-093468e701c3",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "UOPSwPuCG3W8AUMd",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        256,
+        -208
+      ],
+      "id": "dcdf709d-93bb-4f2d-9942-2da3e2789fca",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Search_Text', ``, 'string') }}",
+        "limit": 100,
+        "simple": false,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notionTool",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        -240
+      ],
+      "id": "23402ace-0467-4066-9a13-fb61ce03140e",
+      "name": "Search a page in Notion",
+      "credentials": {
+        "notionApi": {
+          "id": "38MtxtKU80jMlroW",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "block",
+        "operation": "getAll",
+        "blockId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Block', ``, 'string') }}"
+        },
+        "limit": 100,
+        "simplifyOutput": false
+      },
+      "type": "n8n-nodes-base.notionTool",
+      "typeVersion": 2.2,
+      "position": [
+        528,
+        -256
+      ],
+      "id": "74a7fb45-a09d-4994-bfff-99510afd40e9",
+      "name": "Get many child blocks in Notion",
+      "credentials": {
+        "notionApi": {
+          "id": "38MtxtKU80jMlroW",
+          "name": "Notion account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search a page in Notion": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many child blocks in Notion": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b36829bd-ddf3-4a0d-bab8-acdcdd7116ee",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3550d718f64796c31e9965328e02b53bc22a3ece51acafb5e5062e4af780798d"
+  },
+  "id": "uLpf2Qd6VZKlAhvE",
+  "tags": []
+}
