@@ -1,0 +1,11 @@
+<div>
+    <h1>Welcome to a section of iconic cars</h1>
+    <ul>
+        @for(car of cars; track car.id){
+            <li>
+                <h2> {{ car.name }}</h2>
+                <img [src]="car.image" alt="Image of a car" >
+            </li>
+        }
+    </ul>
+</div>

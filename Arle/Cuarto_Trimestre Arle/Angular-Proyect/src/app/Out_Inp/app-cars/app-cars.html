@@ -1,0 +1,25 @@
+<div>
+    <h1>Proyecto Cars</h1>
+    <h2>BMW</h2>
+    <h3>Eusebiooooooooooooooooooooooo</h3>
+
+    <ul>
+        @for (car of carsBmwSelected(); track car) {
+            <li>{{ car }}</li>
+        }
+    </ul>
+    <ul>
+        @for (car of carsPorscheSelected(); track car) {
+            <li>{{ car }}</li>
+        }
+    </ul>
+    <ul>
+        @for (car of carsPaganiSelected(); track car) {
+            <li>{{ car }}</li>
+        }
+    </ul>
+
+    <app-bmw [bmw]="bmw()" (carSelected)="newChangeOnCarsBmwSelected($event)"></app-bmw>
+    <app-porsche [porsche]="porsche()" (carSelected)="newChangeOnCarsPorscheSelected($event)"></app-porsche>
+    <app-pagani [pagani]="pagani()" (carSelected)="newChangeOnCarsPaganiSelected($event)"></app-pagani>
+</div>

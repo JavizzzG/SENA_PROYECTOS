@@ -1,0 +1,9 @@
+ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+img {
+    width: 300px;
+}

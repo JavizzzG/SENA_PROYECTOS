@@ -1,0 +1,17 @@
+<div>
+    <h1>Paganiiis</h1>
+    <ul>
+        @for (car of pagani(); track car.name){
+            <li>
+                <h3>{{ car.name }} </h3>
+                <img [src]="car.image" alt="Imagen del carro">
+
+                @if(isCarSelected(car.name)){
+                    <button (click)="handleUnselectCar(car.name)">No selelect</button>
+                }@else{
+                    <button (click)="handleSelectedCar(car.name)">Select</button>
+                }
+            </li>
+        }
+    </ul>
+</div>
