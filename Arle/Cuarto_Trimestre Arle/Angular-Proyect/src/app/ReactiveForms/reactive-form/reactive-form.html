@@ -1,0 +1,26 @@
+<div>
+    <form [formGroup]="productForm" (submit)="handleSubmitFormProduct()">
+        <fieldset>
+            <label for="name">Name:</label>
+            <input type="text" id="name" formControlName="name">
+        </fieldset>
+        <fieldset>
+            <label for="description">Description:</label>
+            <input type="text" id="description" formControlName="description">
+        </fieldset>
+        <fieldset>
+            <label for="price">Price:</label>
+            <input type="text" id="price" formControlName="price">
+        </fieldset>
+        <button>Send</button>
+
+    </form>
+    <br>
+    <br>
+    <br>
+    <ul>
+        @for(data of mapForm(); track data.name){
+            <li>{{ data.name }}    -    {{ data.description }}      -      {{ data.price }}</li>
+        }
+    </ul>
+</div>

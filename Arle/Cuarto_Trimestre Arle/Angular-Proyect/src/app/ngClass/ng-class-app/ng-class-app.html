@@ -1,0 +1,8 @@
+<div>
+    <h1 [ngClass]="{defaultH1: statusH1 == 1, style1H1: statusH1 == 2, style2H1: statusH1 == 3, style3H1: complement == true}">Practica de ngClass básica</h1>
+    <p>Puedes hacer que el título cambie presionando los botónes</p>
+    <button (click)="changeStatusH1(1)">Default</button>
+    <button (click)="changeStatusH1(2)">Estilo 1</button>
+    <button (click)="changeStatusH1(3)">Estilo Juanse</button>
+    <button (click)="changeComplement()">Complementaria del estilo Juanse</button>
+</div>

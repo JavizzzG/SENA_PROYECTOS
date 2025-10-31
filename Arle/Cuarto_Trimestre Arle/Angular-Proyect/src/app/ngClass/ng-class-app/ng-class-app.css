@@ -1,0 +1,25 @@
+.defaultH1 {
+    width: 100%;
+    text-align: center;
+    background-color: #ddd;
+}
+
+.style1H1 {
+    width: 100%;
+    text-align: center;
+    background-color: #111;
+    color: #eee;
+    text-decoration: line-through;
+}
+
+.style2H1 {
+    width: 100%;
+    text-align: center;
+    background-color: #111;
+    color: chocolate;
+}
+
+.style3H1 {
+    padding: 20px 10px;
+    letter-spacing: 20px;
+}
