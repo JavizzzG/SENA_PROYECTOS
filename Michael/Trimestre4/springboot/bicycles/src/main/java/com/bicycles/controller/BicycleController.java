@@ -43,7 +43,13 @@ public class BicycleController {
     }
 
     @GetMapping("/bicycle/stock")
-    public Integer totalStock(){
-        return bicycleService.totalStock();
+    public String totalStock(){
+
+        Integer stock = bicycleService.totalStock();
+        if(stock == 0){
+            return "No hay stock";
+        }
+
+        return  "El stock total es: " + stock;
     }
 }

@@ -2,7 +2,10 @@ package com.bicycles.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
+@Table(name = "bicycle")
 public class Bicycle {
 
     @Id
@@ -20,6 +23,9 @@ public class Bicycle {
 
     @Column
     private Integer stock_bic;
+
+    @OneToMany(mappedBy = "bicycle_id")
+    private List<Sale> sales;
 
 
     public Bicycle(Integer id_bic, String name_bic, String model_bic, Double price_bic, Integer stock_bic){
