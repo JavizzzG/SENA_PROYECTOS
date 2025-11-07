@@ -3,17 +3,27 @@
         <fieldset>
             <label for="name">Name:</label>
             <input type="text" id="name" formControlName="name">
+            @if(name.hasError("maxlength")){
+                <p>The name cannot be longer than 10</p>
+            }@else if(name.hasError("required") && name.touched){
+                <p>The name is required</p>
+            }
         </fieldset>
         <fieldset>
             <label for="description">Description:</label>
             <input type="text" id="description" formControlName="description">
+            @if(description.invalid && description.touched){
+                <p>The description cannot be longer than 20</p>
+            }
         </fieldset>
         <fieldset>
             <label for="price">Price:</label>
             <input type="text" id="price" formControlName="price">
+            @if(price.invalid && price.touched){
+                <p>The price is required</p>
+            }
         </fieldset>
-        <button>Send</button>
-
+        <button [disabled]="productForm.invalid">Send</button>
     </form>
     <br>
     <br>

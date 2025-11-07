@@ -1,0 +1,13 @@
+<h2>User Data:</h2>
+<h3>{{ userService.user.id }}</h3>
+<h3>{{ userService.user.name }}</h3>
+<h3>{{ userService.user.isAdmin }}</h3>
+
+<button (click)="userService.changeUserRol()">Change user rol</button>
+
+<h2>User Data2:</h2>
+<h3>{{ userService2.user.id }}</h3>
+<h3>{{ userService2.user.name }}</h3>
+<h3>{{ userService2.user.isAdmin }}</h3>
+
+<button (click)="userService2.changeUserRol()">Change user rol</button>

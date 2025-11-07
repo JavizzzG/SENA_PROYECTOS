@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 interface formData {
   name: string,
@@ -23,9 +23,9 @@ export class ReactiveForm {
   mapForm = signal<formData[]>([]);
 
   constructor (){
-    this.name = new FormControl("");
-    this.description = new FormControl("");
-    this.price = new FormControl("");
+    this.name = new FormControl("", [Validators.required, Validators.maxLength(10)]);
+    this.description = new FormControl("", Validators.maxLength(20));
+    this.price = new FormControl("", Validators.required);
 
     this.productForm = new FormGroup({
       name: this.name,
@@ -37,6 +37,7 @@ export class ReactiveForm {
   handleSubmitFormProduct() {
     console.log(this.productForm.value);
     this.mapForm.update((array) => [...array, this.productForm.value]);
+    this.productForm.reset();
   }
 
 }
