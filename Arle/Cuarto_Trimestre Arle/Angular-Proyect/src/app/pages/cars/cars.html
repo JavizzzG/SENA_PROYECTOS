@@ -1,0 +1,11 @@
+<header>
+    <app-navbar/>
+</header>
+<section>
+    <p>Buenas, pagina de cars</p>
+    <ul>
+        @for(car of carService.getCars(); track car.name ){
+            <li>{{ car.name }}</li>
+        }
+    </ul>
+</section>

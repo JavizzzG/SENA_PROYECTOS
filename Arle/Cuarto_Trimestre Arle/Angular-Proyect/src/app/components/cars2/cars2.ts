@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-cars',
+  selector: 'app-cars2',
   standalone: true,
   imports: [],
-  templateUrl: './cars.html',
-  styleUrl: './cars.css'
+  templateUrl: './cars2.html',
+  styleUrl: './cars2.css'
 })
-export class Cars {
+export class Cars2 {
   cars: any = [
     {
       id: 1,
