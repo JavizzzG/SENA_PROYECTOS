@@ -8,6 +8,7 @@ import { UserComponent } from './components/user/user';
 import { Home } from './pages/home/home';
 import { Cars } from './pages/cars/cars';
 import { CarsForm } from './pages/cars-form/cars-form';
+import { CarDetail } from './pages/car-detail/car-detail';
 
 export const routes: Routes = [
     {path: "bmw", component: Bmw},
@@ -18,5 +19,6 @@ export const routes: Routes = [
     {path: "user", component: UserComponent},
     {path: "home", component: Home},
     {path: "cars", component: Cars},
+    {path: "cars/:carName", component: CarDetail},
     {path: "carsForm", component: CarsForm}
 ];

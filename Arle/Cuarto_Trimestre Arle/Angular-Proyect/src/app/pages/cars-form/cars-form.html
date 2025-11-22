@@ -3,4 +3,32 @@
 </header>
 <section>
     <p>Bienvenido a la pagina de form de cars</p>
+
+    <form [formGroup]="carForm" (submit)="handleSubmitCarForm()">
+        <fieldset>
+            <label for="name">Name:</label>
+            <input type="text" formControlName="name">
+        </fieldset>
+        @if(name.invalid && name.touched){
+            <p>Name is required</p>
+        }
+
+        <fieldset>
+            <label for="price">Price:</label>
+            <input type="number" formControlName="price">
+        </fieldset>
+        @if(price.hasError("min") && price.touched){
+            <p>Price cannot be less than 0</p>
+        }@else if(price.invalid && price.touched){
+            <p>Price is required</p>
+        }
+
+        <fieldset>
+            <label for="description">Description:</label>
+            <input type="text" formControlName="description">
+        </fieldset>
+
+        <button [disabled]="carForm.invalid">Save Car</button>
+
+    </form>
 </section>
