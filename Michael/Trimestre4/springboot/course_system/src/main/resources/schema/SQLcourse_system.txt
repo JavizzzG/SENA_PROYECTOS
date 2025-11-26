@@ -1,0 +1,35 @@
+create database if not exists course_system_db;
+
+use course_system_db;
+
+-- course_system_db.course definition
+
+CREATE TABLE `course` (
+  `id_course` int NOT NULL AUTO_INCREMENT,
+  `name_course` varchar(100) DEFAULT NULL,
+  `description_course` varchar(255) DEFAULT NULL,
+  `capacity_course` int DEFAULT NULL,
+  `status_course` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id_course`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- course_system_db.`user` definition
+
+CREATE TABLE `user` (
+  `id_user` int NOT NULL AUTO_INCREMENT,
+  `name_user` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- course_system_db.course_user definition
+
+CREATE TABLE `course_user` (
+  `id_co_user` int NOT NULL AUTO_INCREMENT,
+  `FKid_course` int DEFAULT NULL,
+  `FKid_user` int DEFAULT NULL,
+  PRIMARY KEY (`id_co_user`),
+  KEY `FKid_course` (`FKid_course`),
+  KEY `FKid_user` (`FKid_user`),
+  CONSTRAINT `course_user_ibfk_1` FOREIGN KEY (`FKid_course`) REFERENCES `course` (`id_course`),
+  CONSTRAINT `course_user_ibfk_2` FOREIGN KEY (`FKid_user`) REFERENCES `user` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
