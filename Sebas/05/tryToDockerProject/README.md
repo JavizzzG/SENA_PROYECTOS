@@ -1,5 +1,3 @@
-Te lo reorganicé para que quede **mucho más limpio, profesional y fácil de seguir en GitHub**.
-Usé **Markdown bien estructurado**, bloques de código y advertencias claras.
 
 ---
 
@@ -305,10 +303,3 @@ Si algo no funciona:
 
 ---
 
-Si quieres, también puedo **mejorarte aún más el README** para que quede **nivel proyecto open-source**, agregando:
-
-* badges
-* tabla de arquitectura
-* diagrama de redes Docker
-* sección de troubleshooting
-* versión con **docker-compose (mucho más simple)**.
