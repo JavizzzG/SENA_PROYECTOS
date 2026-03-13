@@ -1,11 +1,11 @@
-<!-- Buenísimas tardes, a continuación está lo que debe hacer para correr el back, front y db
+***Buenísimas tardes, a continuación está lo que debe hacer para correr el back, front y db
 
 Por cierto, voy a dar por hecho que ya tiene docker instalado y configurado con permisos para ejecutar usando el comando "docker"
 
 También se da por nhecho que ya bajó el back y el front 
 
 
-Nota: Se pueden cambiar los nombres de todo aquello que inicie por "sebas" pero si se hace ese cambio tiene que tener también presente cambiarlo en las partes donde se use el nombre de ejemplo-->
+Nota: Se pueden cambiar los nombres de todo aquello que inicie por "sebas" pero si se hace ese cambio tiene que tener también presente cambiarlo en las partes donde se use el nombre de ejemplo***
 
 
 <!-- Nota: Los contenedores a crear se prenden manualmente, así que cada vez que los quieras correr debes escribir
@@ -168,8 +168,8 @@ http://localhost:4200/
 
 
 
-<!-- Nota final:  Algunas de las imágenes usadas no son las más ligeras, ya que en algunos casos se optó por una con mayor compatibilidad, si desea puede investigar más acerca de las imágenes y elegir la de su preferencia siempre y cuando sea compatible con el proyecto
+***Nota final:  Algunas de las imágenes usadas no son las más ligeras, ya que en algunos casos se optó por una con mayor compatibilidad, si desea puede investigar más acerca de las imágenes y elegir la de su preferencia siempre y cuando sea compatible con el proyecto
 
 
 
-FINNN -->
+FINNN***
