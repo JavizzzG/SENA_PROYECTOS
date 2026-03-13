@@ -1,0 +1,30 @@
+<div class="cars-container">
+  <h2>Lista de Carros</h2>
+
+  <div class="new-car-form">
+    <h3>Agregar nuevo carro</h3>
+
+    <label>
+      Nombre:
+      <input type="text" [(ngModel)]="newCarName" placeholder="Ej: Toyota" />
+    </label>
+
+    <label>
+      Año:
+      <input type="number" [(ngModel)]="newCarYear" placeholder="Ej: 2023" />
+    </label>
+
+    <button (click)="addCar()">Crear Carro</button>
+    <p class="error" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+  </div>
+
+  <ul *ngIf="cars().length > 0" class="cars-list">
+    <li *ngFor="let car of cars()" class="car-item">
+      <strong>{{ car.name }}</strong> (Año: {{ car.year }})
+    </li>
+  </ul>
+
+  <p *ngIf="cars().length === 0" class="no-cars">
+    No hay carros disponibles.
+  </p>
+</div>
