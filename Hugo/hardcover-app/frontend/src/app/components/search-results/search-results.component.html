@@ -1,0 +1,55 @@
+<div class="search-page page-container">
+
+  <!-- Header -->
+  <ng-container *ngIf="query(); else noQuery">
+    <div class="search-header">
+      <p class="section-label">✦ Search Results</p>
+      <h1 class="search-header__title">
+        "<span class="search-header__q">{{ query() }}</span>"
+      </h1>
+      <p class="search-header__count" *ngIf="!loading()">
+        {{ results().length }} book{{ results().length !== 1 ? 's' : '' }} found
+      </p>
+    </div>
+
+    <div class="gold-divider"></div>
+
+    <!-- Loading -->
+    <div class="loading-state" *ngIf="loading()">
+      <div class="spinner"></div>
+      <span>Searching…</span>
+    </div>
+
+    <!-- Error -->
+    <div class="empty-state" *ngIf="error() && !loading()">
+      <h3>Search failed</h3>
+      <p>{{ error() }}</p>
+    </div>
+
+    <!-- No results -->
+    <div class="empty-state" *ngIf="!loading() && !error() && results().length === 0">
+      <h3>No results for "{{ query() }}"</h3>
+      <p>Try a different search term.</p>
+    </div>
+
+    <!-- Grid -->
+    <div class="books-grid" *ngIf="!loading() && !error() && results().length > 0">
+      <app-book-card
+        *ngFor="let book of results(); let i = index"
+        [book]="$any(book)"
+        class="fade-up"
+        [style.animation-delay]="(i * 30) + 'ms'"
+      />
+    </div>
+  </ng-container>
+
+  <!-- No query yet — prompt to use search -->
+  <ng-template #noQuery>
+    <div class="empty-state empty-state--hero">
+      <span class="empty-state__icon">🔍</span>
+      <h3>What are you looking for?</h3>
+      <p>Use the search bar at the top to find nonfiction books, authors, or topics.</p>
+    </div>
+  </ng-template>
+
+</div>

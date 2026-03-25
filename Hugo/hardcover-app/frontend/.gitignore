@@ -1,0 +1,6 @@
+dist/
+node_modules/
+out-tsc/
+.angular/
+*.log
+.DB_Store

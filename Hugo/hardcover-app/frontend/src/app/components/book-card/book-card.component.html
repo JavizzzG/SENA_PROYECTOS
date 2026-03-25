@@ -1,0 +1,40 @@
+<a class="card" [routerLink]="['/book', book.slug]">
+
+  <span *ngIf="rank" class="card__rank">{{ rank }}</span>
+
+  <div class="card__cover" [style.background-color]="coverColor">
+    <img
+      *ngIf="coverUrl && !imgError; else cardTextFallback"
+      [src]="coverUrl"
+      [alt]="book.title"
+      loading="lazy"
+      (error)="onImgError()"
+    />
+    <ng-template #cardTextFallback>
+      <div class="cover-text-fallback">
+        <span class="cover-text-fallback__author">{{ authorName }}</span>
+        <span class="cover-text-fallback__title">{{ book.title }}</span>
+      </div>
+    </ng-template>
+    <div class="card__cover-shine"></div>
+  </div>
+
+  <div class="card__info">
+    <p class="card__author">{{ authorName }}</p>
+    <h3 class="card__title">{{ book.title }}</h3>
+    <div class="card__meta">
+      <span class="card__rating">
+        <span class="card__stars">
+          <ng-container *ngFor="let s of stars">
+            <span [class.filled]="s === 1">★</span>
+          </ng-container>
+        </span>
+        <span class="card__rating-val">{{ ratingDisplay }}</span>
+      </span>
+      <span *ngIf="book.users_read_count" class="card__readers">
+        {{ book.users_read_count | number }}
+      </span>
+    </div>
+  </div>
+
+</a>

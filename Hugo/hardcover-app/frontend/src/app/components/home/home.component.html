@@ -1,0 +1,99 @@
+<div class="home">
+
+  <!-- Hero / Featured -->
+  <section class="hero" *ngIf="featured && !loading()">
+    <div class="hero__bg"
+      *ngIf="featured.image?.url"
+      [style.background-image]="'url(' + featured.image!.url + ')'">
+    </div>
+    <div class="hero__overlay"></div>
+
+    <div class="hero__content page-container">
+
+      <!-- Cover with text fallback -->
+      <div class="hero__cover" [style.background-color]="featured.image?.color ?? '#2a2520'">
+        <img
+          *ngIf="featured.image?.url && !heroCoverError; else heroCoverFallback"
+          [src]="featured.image!.url"
+          [alt]="featured.title"
+          (error)="heroCoverError = true"
+        />
+        <ng-template #heroCoverFallback>
+          <div class="cover-text-fallback">
+            <span class="cover-text-fallback__author">{{ featuredAuthor }}</span>
+            <span class="cover-text-fallback__title">{{ featured.title }}</span>
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="hero__text">
+        <span class="section-label">✦ Editor's Pick</span>
+        <h1 class="hero__title">{{ featured.title }}</h1>
+        <p class="hero__author">by <strong>{{ featuredAuthor }}</strong></p>
+        <p class="hero__desc" *ngIf="featured.description">
+          {{ featured.description | slice:0:220 }}{{ featuredDescLength > 220 ? '…' : '' }}
+        </p>
+        <div class="hero__meta">
+          <span class="hero__rating">★ {{ featuredRating }}</span>
+          <span class="hero__divider" *ngIf="featured.users_read_count">·</span>
+          <span *ngIf="featured.users_read_count">{{ featured.users_read_count | number }} readers</span>
+          <span class="hero__divider" *ngIf="featured.pages">·</span>
+          <span *ngIf="featured.pages">{{ featured.pages }} pages</span>
+        </div>
+        <a [routerLink]="['/book', featured.slug]" class="hero__cta">
+          View Book
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Genre Filter -->
+  <div class="genre-bar page-container">
+    <div class="genre-bar__inner">
+      <button
+        *ngFor="let g of genres"
+        class="genre-btn"
+        [class.active]="activeGenre() === g.value"
+        (click)="loadBooks(g.value)"
+      >{{ g.label }}</button>
+    </div>
+  </div>
+
+  <div class="gold-divider page-container"></div>
+
+  <!-- Books Grid -->
+  <section class="grid-section page-container">
+    <div class="grid-section__header">
+      <div>
+        <p class="section-label">✦ Nonfiction</p>
+        <h2 class="section-title">{{ activeGenreLabel }}</h2>
+      </div>
+      <span class="grid-section__count" *ngIf="!loading()">{{ gridBooks.length }} books</span>
+    </div>
+
+    <div class="loading-state" *ngIf="loading()">
+      <div class="spinner"></div>
+      <span>Loading books…</span>
+    </div>
+
+    <div class="empty-state" *ngIf="error()">
+      <h3>Something went wrong</h3>
+      <p>{{ error() }}</p>
+    </div>
+
+    <div class="books-grid" *ngIf="!loading() && !error()">
+      <app-book-card
+        *ngFor="let book of gridBooks; let i = index"
+        [book]="book"
+        [rank]="i + 2"
+        class="fade-up"
+        [style.animation-delay]="(i * 40) + 'ms'"
+      />
+    </div>
+  </section>
+
+</div>

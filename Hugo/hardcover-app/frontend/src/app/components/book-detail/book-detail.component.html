@@ -1,0 +1,107 @@
+<div class="detail">
+
+  <div class="loading-state" *ngIf="loading()">
+    <div class="spinner"></div>
+    <span>Loading book…</span>
+  </div>
+
+  <div class="empty-state page-container" *ngIf="error()">
+    <h3>Could not load book</h3>
+    <p>{{ error() }}</p>
+    <a routerLink="/" class="back-link">← Back to home</a>
+  </div>
+
+  <ng-container *ngIf="book() && !loading()">
+    <div class="detail__bg"
+      *ngIf="coverUrl && !imgError"
+      [style.background-image]="'url(' + coverUrl + ')'">
+    </div>
+    <div class="detail__bg-overlay"></div>
+
+    <div class="detail__inner page-container">
+      <a routerLink="/" class="back-link">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        Back to Trending
+      </a>
+
+      <div class="detail__layout">
+
+        <aside class="detail__sidebar">
+          <!-- Cover with text fallback -->
+          <div class="detail__cover" [style.background-color]="book()!.image?.color ?? '#2a2520'">
+            <img
+              *ngIf="coverUrl && !imgError; else detailTextFallback"
+              [src]="coverUrl"
+              [alt]="book()!.title"
+              (error)="onImgError()"
+            />
+            <ng-template #detailTextFallback>
+              <div class="cover-text-fallback cover-text-fallback--lg">
+                <span class="cover-text-fallback__author">{{ authors }}</span>
+                <span class="cover-text-fallback__title">{{ book()!.title }}</span>
+              </div>
+            </ng-template>
+          </div>
+
+          <div class="detail__stats">
+            <div class="stat">
+              <span class="stat__val">{{ ratingDisplay }}</span>
+              <span class="stat__label">Rating</span>
+            </div>
+            <div class="stat" *ngIf="book()!.ratings_count">
+              <span class="stat__val">{{ book()!.ratings_count | number }}</span>
+              <span class="stat__label">Ratings</span>
+            </div>
+            <div class="stat" *ngIf="book()!.users_read_count">
+              <span class="stat__val">{{ book()!.users_read_count | number }}</span>
+              <span class="stat__label">Readers</span>
+            </div>
+            <div class="stat" *ngIf="book()!.pages">
+              <span class="stat__val">{{ book()!.pages }}</span>
+              <span class="stat__label">Pages</span>
+            </div>
+            <div class="stat" *ngIf="book()!.release_year">
+              <span class="stat__val">{{ book()!.release_year }}</span>
+              <span class="stat__label">Year</span>
+            </div>
+          </div>
+        </aside>
+
+        <main class="detail__content">
+          <p class="detail__authors">{{ authors }}</p>
+          <h1 class="detail__title">{{ book()!.title }}</h1>
+
+          <div class="detail__rating">
+            <span class="detail__stars">
+              <ng-container *ngFor="let s of stars">
+                <span [class.filled]="s === 1">★</span>
+              </ng-container>
+            </span>
+            <span class="detail__rating-num">{{ ratingDisplay }} / 5</span>
+          </div>
+
+          <div class="detail__desc" *ngIf="paragraphs.length">
+            <p *ngFor="let p of paragraphs">{{ p }}</p>
+          </div>
+          <p class="detail__no-desc" *ngIf="!paragraphs.length">No description available.</p>
+
+          <a
+            [href]="'https://hardcover.app/books/' + book()!.slug"
+            target="_blank" rel="noopener noreferrer"
+            class="detail__external"
+          >
+            View on Hardcover
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+        </main>
+
+      </div>
+    </div>
+  </ng-container>
+
+</div>
