@@ -1,0 +1,76 @@
+services:
+
+  # ── Database ─────────────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    container_name: db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       ${POSTGRES_DB:-bookit}
+      POSTGRES_USER:     ${POSTGRES_USER:-bookit}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-bookit123}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - bookit-private
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-bookit} -d ${POSTGRES_DB:-bookit}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # ── Backend ───────────────────────────────────────────────────────────────
+  backend:
+    image: javizzzg/sebas-bookit-back:latest
+    container_name: backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL:      jdbc:postgresql://db:5432/${POSTGRES_DB:-bookit}
+      POSTGRES_USER:     ${POSTGRES_USER:-bookit}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-bookit123}
+      PORT:              8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - bookit-private
+      - bookit-web
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # ── Frontend ──────────────────────────────────────────────────────────────
+  frontend:
+    image: javizzzg/sebas-bookit-front:latest
+    container_name: frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - bookit-web
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:80/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+# ── Volumes & Networks ────────────────────────────────────────────────────
+volumes:
+  postgres_data:
+
+networks:
+  bookit-web:
+    driver: bridge
+
+  bookit-private:
+    driver: bridge
